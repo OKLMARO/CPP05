@@ -6,31 +6,30 @@
 /*   By: oamairi <oamairi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 16:56:39 by oamairi           #+#    #+#             */
-/*   Updated: 2026/06/15 17:21:07 by oamairi          ###   ########.fr       */
+/*   Updated: 2026/06/22 16:30:11 by oamairi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Form.hpp"
 #include "Bureaucrat.hpp"
 
 int main()
 {
-	Bureaucrat alice(75, "Alice");
-	std::cout << alice << std::endl;
+	Form contract("Contract", 50, 25);
+	std::cout << contract << std::endl;
 
-	alice.upGrade();
+	Bureaucrat alice(40, "Alice");
 	std::cout << alice << std::endl;
+	alice.signForm(contract);
+	std::cout << contract << std::endl;
 
-	alice.downGrade();
-	std::cout << alice << std::endl;
-
-	Bureaucrat def;
-	std::cout << def << std::endl;
+	Bureaucrat bob(80, "Bob");
+	std::cout << bob << std::endl;
+	bob.signForm(contract);
 
 	try
 	{
-		Bureaucrat top(1, "Top");
-		std::cout << top << std::endl;
-		top.upGrade();
+		Form invalid("Invalid", 0, 25);
 	}
 	catch (std::exception &e)
 	{
@@ -39,9 +38,7 @@ int main()
 
 	try
 	{
-		Bureaucrat bot(150, "Bot");
-		std::cout << bot << std::endl;
-		bot.downGrade();
+		Form invalid("Invalid", 151, 25);
 	}
 	catch (std::exception &e)
 	{
