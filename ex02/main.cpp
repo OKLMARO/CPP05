@@ -6,44 +6,80 @@
 /*   By: oamairi <oamairi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 16:56:39 by oamairi           #+#    #+#             */
-/*   Updated: 2026/06/22 16:30:11 by oamairi          ###   ########.fr       */
+/*   Updated: 2026/06/24 11:25:34 by oamairi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int main()
 {
-	Form contract("Contract", 50, 25);
-	std::cout << contract << std::endl;
+	srand(time(NULL));
+
+	// --- Test AForm (anciennement Form) ---
+	AForm *contract = new ShrubberyCreationForm("Contract");
+	std::cout << *contract << std::endl;
 
 	Bureaucrat alice(40, "Alice");
 	std::cout << alice << std::endl;
-	alice.signForm(contract);
-	std::cout << contract << std::endl;
+	alice.signForm(*contract);
+	std::cout << *contract << std::endl;
 
 	Bureaucrat bob(80, "Bob");
 	std::cout << bob << std::endl;
-	bob.signForm(contract);
+	bob.signForm(*contract);
 
+	// --- ShrubberyCreationForm ---
+	std::cout << "\n--- ShrubberyCreationForm ---" << std::endl;
+	ShrubberyCreationForm shrubbery("home");
+	Bureaucrat gardener(130, "Gardener");
+	gardener.signForm(shrubbery);
+	gardener.executeForm(shrubbery);
+
+	// Grade insuffisant pour executer
+	Bureaucrat weakGardener(138, "WeakGardener");
+	weakGardener.signForm(shrubbery);
+	weakGardener.executeForm(shrubbery);
+
+	// --- RobotomyRequestForm ---
+	std::cout << "\n--- RobotomyRequestForm ---" << std::endl;
+	RobotomyRequestForm robotomy("Bob");
+	Bureaucrat surgeon(45, "Surgeon");
+	surgeon.signForm(robotomy);
+	surgeon.executeForm(robotomy);
+	surgeon.executeForm(robotomy);
+	surgeon.executeForm(robotomy);
+
+	// --- PresidentialPardonForm ---
+	std::cout << "\n--- PresidentialPardonForm ---" << std::endl;
+	PresidentialPardonForm pardon("Alice");
+	Bureaucrat president(5, "President");
+	president.signForm(pardon);
+	president.executeForm(pardon);
+
+	// --- Execution sans signature ---
+	std::cout << "\n--- Execution sans signature ---" << std::endl;
+	PresidentialPardonForm unsigned_form("Charlie");
+	president.executeForm(unsigned_form);
+
+	// --- Exceptions a la construction ---
+	std::cout << "\n--- Exceptions construction ---" << std::endl;
 	try
 	{
-		Form invalid("Invalid", 0, 25);
+		ShrubberyCreationForm invalid("invalid");
+		Bureaucrat tooweak(150, "TooWeak");
+		tooweak.signForm(invalid);
+		tooweak.executeForm(invalid);
 	}
 	catch (std::exception &e)
 	{
 		std::cerr << "Exception: " << e.what() << std::endl;
 	}
 
-	try
-	{
-		Form invalid("Invalid", 151, 25);
-	}
-	catch (std::exception &e)
-	{
-		std::cerr << "Exception: " << e.what() << std::endl;
-	}
-
+	delete contract;
 	return 0;
 }

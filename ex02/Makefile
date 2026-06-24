@@ -6,7 +6,7 @@
 #    By: oamairi <oamairi@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/06/15 16:55:48 by oamairi           #+#    #+#              #
-#    Updated: 2026/06/22 16:48:21 by oamairi          ###   ########.fr        #
+#    Updated: 2026/06/24 11:23:02 by oamairi          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC		=	c++
 
 CFLAGS	=	-Wall -Wextra -Werror -std=c++98
 
-SRCS	=	Bureaucrat.cpp Form.cpp main.cpp
+SRCS	=	Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp main.cpp
 
 OBJS	=	$(SRCS:.cpp=.o)
 

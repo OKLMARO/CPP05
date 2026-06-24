@@ -6,14 +6,14 @@
 /*   By: oamairi <oamairi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 12:19:09 by oamairi           #+#    #+#             */
-/*   Updated: 2026/06/15 18:42:46 by oamairi          ###   ########.fr       */
+/*   Updated: 2026/06/24 11:20:23 by oamairi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 
 #include <iostream>
-#include "Form.hpp"
+#include "AForm.hpp"
 
 class Bureaucrat
 {
@@ -22,14 +22,15 @@ private:
 	unsigned int		_grade;
 public:
 	Bureaucrat();
+	Bureaucrat(const Bureaucrat &obj);
+	Bureaucrat(unsigned int grade, std::string name);
 	void				upGrade();
 	void				downGrade();
-	Bureaucrat(const Bureaucrat &obj);
 	const std::string	getName() const;
 	int					getGrade() const;
-	void				signForm(Form &obj);
-	Bureaucrat(unsigned int grade, std::string name);
+	void				signForm(AForm &obj);
 	Bureaucrat			&operator=(const Bureaucrat &obj);
+	void				executeForm(AForm const & form) const;
 	~Bureaucrat();
 
 	class GradeTooHighException : public std::exception

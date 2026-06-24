@@ -6,7 +6,7 @@
 /*   By: oamairi <oamairi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 18:05:45 by oamairi           #+#    #+#             */
-/*   Updated: 2026/06/22 18:28:07 by oamairi          ###   ########.fr       */
+/*   Updated: 2026/06/24 11:27:05 by oamairi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,19 @@ private:
 	const std::string _name;
 	const int _reqsig;
 	const int _reqexec;
+	virtual void	execution() const = 0;
 public:
 	AForm();
 	AForm(const AForm &obj);
-	bool	isSig() const;
-	std::string	getName() const;
-	void	beSigned(Bureaucrat &obj);
+	bool			isSig() const;
+	std::string		getName() const;
 	unsigned int	getReqSig() const;
 	unsigned int	getReqExec() const;
-	AForm	&operator=(const AForm &obj);
+	void			beSigned(Bureaucrat &obj);
+	AForm			&operator=(const AForm &obj);
+	void			execute(Bureaucrat const & executor) const;
 	AForm(std::string name, unsigned int reqsig, unsigned int reqexec);
-	~AForm();
+	virtual ~AForm();
 
 	class GradeTooHighException : public std::exception
 	{
@@ -50,6 +52,15 @@ public:
 			virtual const char* what() const throw()
 			{
 				return "grade is too low";
+			}
+	};
+
+	class FormNotSignedException : public std::exception
+	{
+		public:
+			virtual const char* what() const throw()
+			{
+				return "Form is not signed";
 			}
 	};
 };
