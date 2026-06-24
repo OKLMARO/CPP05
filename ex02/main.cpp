@@ -6,7 +6,7 @@
 /*   By: oamairi <oamairi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 16:56:39 by oamairi           #+#    #+#             */
-/*   Updated: 2026/06/24 16:29:35 by oamairi          ###   ########.fr       */
+/*   Updated: 2026/06/24 16:37:55 by oamairi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,7 @@ int main()
 {
 	srand(time(NULL));
 
-	AForm *contract = new ShrubberyCreationForm("Contract");
-	std::cout << *contract << std::endl;
-
-	Bureaucrat alice(40, "Alice");
-	std::cout << alice << std::endl;
-	alice.signForm(*contract);
-	std::cout << *contract << std::endl;
-
-	Bureaucrat bob(80, "Bob");
-	std::cout << bob << std::endl;
-	bob.signForm(*contract);
-
-	std::cout << "\n--- ShrubberyCreationForm ---" << std::endl;
+	std::cout << "\n--- ShrubberyCreationForm ---\n";
 	ShrubberyCreationForm shrubbery("home");
 	Bureaucrat gardener(130, "Gardener");
 	gardener.signForm(shrubbery);
@@ -42,7 +30,7 @@ int main()
 	weakGardener.signForm(shrubbery);
 	weakGardener.executeForm(shrubbery);
 
-	std::cout << "\n--- RobotomyRequestForm ---" << std::endl;
+	std::cout << "\n--- RobotomyRequestForm ---\n";
 	RobotomyRequestForm robotomy("Bob");
 	Bureaucrat surgeon(45, "Surgeon");
 	surgeon.signForm(robotomy);
@@ -50,17 +38,17 @@ int main()
 	surgeon.executeForm(robotomy);
 	surgeon.executeForm(robotomy);
 
-	std::cout << "\n--- PresidentialPardonForm ---" << std::endl;
+	std::cout << "\n--- PresidentialPardonForm ---\n";
 	PresidentialPardonForm pardon("Alice");
 	Bureaucrat president(5, "President");
 	president.signForm(pardon);
 	president.executeForm(pardon);
 
-	std::cout << "\n--- Execution sans signature ---" << std::endl;
+	std::cout << "\n--- Execution sans signature ---\n";
 	PresidentialPardonForm unsigned_form;
 	president.executeForm(unsigned_form);
 
-	std::cout << "\n--- Exceptions construction ---" << std::endl;
+	std::cout << "\n--- Exceptions construction ---\n";
 	try
 	{
 		ShrubberyCreationForm invalid("invalid");
@@ -73,6 +61,5 @@ int main()
 		std::cerr << "Exception: " << e.what() << std::endl;
 	}
 
-	delete contract;
 	return 0;
 }
