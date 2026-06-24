@@ -6,7 +6,7 @@
 /*   By: oamairi <oamairi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 16:56:39 by oamairi           #+#    #+#             */
-/*   Updated: 2026/06/24 11:25:34 by oamairi          ###   ########.fr       */
+/*   Updated: 2026/06/24 16:06:29 by oamairi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int main()
 {
 	srand(time(NULL));
 
-	// --- Test AForm (anciennement Form) ---
 	AForm *contract = new ShrubberyCreationForm("Contract");
 	std::cout << *contract << std::endl;
 
@@ -33,19 +32,16 @@ int main()
 	std::cout << bob << std::endl;
 	bob.signForm(*contract);
 
-	// --- ShrubberyCreationForm ---
 	std::cout << "\n--- ShrubberyCreationForm ---" << std::endl;
 	ShrubberyCreationForm shrubbery("home");
 	Bureaucrat gardener(130, "Gardener");
 	gardener.signForm(shrubbery);
 	gardener.executeForm(shrubbery);
 
-	// Grade insuffisant pour executer
 	Bureaucrat weakGardener(138, "WeakGardener");
 	weakGardener.signForm(shrubbery);
 	weakGardener.executeForm(shrubbery);
 
-	// --- RobotomyRequestForm ---
 	std::cout << "\n--- RobotomyRequestForm ---" << std::endl;
 	RobotomyRequestForm robotomy("Bob");
 	Bureaucrat surgeon(45, "Surgeon");
@@ -54,19 +50,16 @@ int main()
 	surgeon.executeForm(robotomy);
 	surgeon.executeForm(robotomy);
 
-	// --- PresidentialPardonForm ---
 	std::cout << "\n--- PresidentialPardonForm ---" << std::endl;
 	PresidentialPardonForm pardon("Alice");
 	Bureaucrat president(5, "President");
 	president.signForm(pardon);
 	president.executeForm(pardon);
 
-	// --- Execution sans signature ---
 	std::cout << "\n--- Execution sans signature ---" << std::endl;
 	PresidentialPardonForm unsigned_form("Charlie");
 	president.executeForm(unsigned_form);
 
-	// --- Exceptions a la construction ---
 	std::cout << "\n--- Exceptions construction ---" << std::endl;
 	try
 	{

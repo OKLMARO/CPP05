@@ -6,7 +6,7 @@
 /*   By: oamairi <oamairi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 12:21:29 by oamairi           #+#    #+#             */
-/*   Updated: 2026/06/24 11:22:14 by oamairi          ###   ########.fr       */
+/*   Updated: 2026/06/24 16:04:19 by oamairi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	Bureaucrat::getGrade() const
 
 void	Bureaucrat::upGrade()
 {
-	if (this->_grade <= 1)
+	if (this->_grade < 1)
 		throw Bureaucrat::GradeTooHighException();
 	else
 		this->_grade--;
@@ -48,7 +48,7 @@ void	Bureaucrat::upGrade()
 
 void	Bureaucrat::downGrade()
 {
-	if (this->_grade >= 150)
+	if (this->_grade > 150)
 		throw Bureaucrat::GradeTooLowException();
 	else
 		this->_grade++;
@@ -82,7 +82,7 @@ void	Bureaucrat::executeForm(AForm const &form) const
 
 std::ostream	&operator<<(std::ostream &out, const Bureaucrat &bur)
 {
-	out << bur.getName() << ",  bureaucrat grade " << bur.getGrade();
+	out << bur.getName() << ", bureaucrat grade " << bur.getGrade();
 	return out;
 }
 
