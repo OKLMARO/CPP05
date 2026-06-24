@@ -6,7 +6,7 @@
 /*   By: oamairi <oamairi@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/06/15 16:56:39 by oamairi           #+#    #+#             */
-/*   Updated: 2026/06/24 16:06:29 by oamairi          ###   ########.fr       */
+/*   Updated: 2026/06/24 16:29:35 by oamairi          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int main()
 	president.executeForm(pardon);
 
 	std::cout << "\n--- Execution sans signature ---" << std::endl;
-	PresidentialPardonForm unsigned_form("Charlie");
+	PresidentialPardonForm unsigned_form;
 	president.executeForm(unsigned_form);
 
 	std::cout << "\n--- Exceptions construction ---" << std::endl;
